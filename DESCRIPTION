@@ -1,0 +1,14 @@
+Package: hecstatmod
+Type: Package
+Title: Statistical Modelling at HEC Montréal
+Version: 2020.08.16
+Author: Léo Belzile
+Maintainer: Léo Belzile <leo.belzile@hec.ca>
+Description: Quiz and datasets for Statistical Modelling
+License: CC BY-SA 4.0
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.5)
+Imports: learnr, ggplot2, poorman, viridis
+RoxygenNote: 7.1.1
