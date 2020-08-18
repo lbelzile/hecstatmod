@@ -76,7 +76,7 @@ for(file in lfile){
     data <- data %>%
       mutate(prog = factor(prog))
   } else if(filen == "gbdriving"){
-      levels(gbdriving$sex) <- c("man","woman")
+      levels(data$sex) <- c("man","woman")
   } else if(filen == "renergie"){
     data <- data %>%
       mutate(region = factor(region),
@@ -103,6 +103,9 @@ for(file in lfile){
 rm(data, filen)
 external_env$bixicoll <- external_env$bixi
 external_env$bixi <- external_env$bixiuni
+external_env$bixiuni <- NULL
+external_env$college <- external_env$profsalaries
+external_env$profsalaries <- NULL
 rm(covid, envir = external_env)
 
 
