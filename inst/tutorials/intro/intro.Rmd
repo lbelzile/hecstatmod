@@ -1,0 +1,150 @@
+---
+title: "Quiz  - Chapter 1 (Introduction)"
+output:
+  learnr::tutorial:
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  Questions on hypothesis tests and exploratory data analysis.
+  
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE, highlight = TRUE)
+```
+
+## Hypothesis tests
+
+
+```{r valeurp, echo=FALSE}
+question_checkbox("On effectue un test-_t_ pour un échantillon (hypothèse unilatérale) et on obtient une valeur-_p_ de 0.06. Quel énoncé est correct?",
+  answer("L'erreur de type 1 est de 0.06.", message = "L'erreur de type 1 est égale au niveau si la loi nulle est correctement spécifiée."),
+  answer("À niveau 5%, on conclut que l'hypothèse nulle est vraie.", message = "On ne conclut jamais en faveur de l'hypothèse: la valeur-p est la probabilité conditionnelle sous l'hypothèse nulle d'obtenir un résultat. L'alternative peut être tout aussi probable, mais le manque de puissance nous empêche de rejeter la valeur observée."),
+  answer("À niveau 10%, on ne rejette pas l'hypothèse nulle.", correct = TRUE),
+  answer("Si l'hypothèse nulle était vraie, on s'attendrait à observer un résultat aussi extrême 6% du temps.", correct = TRUE),
+  random_answer_order = TRUE,
+  allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+
+```
+
+
+```{r puissance, echo=FALSE}
+question("Considérons un test d'hypothèse pour un paramètre $\\theta$. Quels facteurs mènent à une augmentation de la puissance d'un test de Wald?",
+  answer("Une augmentation de la taille de l'écart entre la valeur postulée du paramètre $\\theta_0$ et la vraie valeur.", correct = TRUE),
+  answer("Une diminution de la taille de l'échantillon.", message = "Si la taille de l'échantillon diminue, on a moins d'information pour détecter une différence."),
+  answer("La normalité asymptotique de la loi nulle.", message = "La taille de l'échantillon influe sur la loi nulle, mais cela n'a aucun impact pour une taille d'échantillons donnée."),
+  answer("Une augmentation de la variabilité de l'estimateur $\\hat{\\theta}$.", message = "Plus l'estimateur est variable, moins l'observation est précise et moins on rejette l'hypothèse nulle souvent."),
+  random_answer_order = TRUE,
+  allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```
+
+```{r ic, echo=FALSE}
+question("On obtient un estimé de la moyenne de 14; supposons que l'intervalle de confiance associé de niveau 95% est [12,16]. Laquelle des interprétations suivantes de l'intervalle de confiance est correcte?",
+  answer("On s’attend à ce que, 95 % du temps dans des échantillons aléatoires répétés, la vraie moyenne se situe entre 12 et 16.", message = "Les bornes de l'intervalle de confiance sont aléatoires."),
+  answer("La probabilité que la vraie moyenne se situe entre 12 et 16 est de 95%.", message = "L'intervalle contient (ou pas) la vraie moyenne; cette définition vaut pour un intervalle de crédibilité."),
+  answer("Dans des échantillons aléatoires répétés, 95 % des intervalles de confiance contiennent la valeur de la moyenne, soit 14.", message = "La vraie moyenne est inconnue!"),
+  answer("Aucune de ces réponses", correct = TRUE),
+  allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```
+
+
+
+On veut savoir si le prix de résidences secondaires a augmenté au cours de la dernière année. Pour ce faire, on considère toutes les propriétés vendues sur Centris en 2018 et 2019.
+
+
+```{r donnees, echo=FALSE}
+question_checkbox("Quels énoncés suivants sont valides?",
+  answer("On a accès à un recensement et toute la population est observée: il suffit de comparer les moyennes empiriques des prix.", message = "La population d'intérêt inclut des maisons qui ne sont pas sur le site de Centris. "),
+  answer("On considère un échantillon aléatoire.", message = "Il n'est pas clair que l'échantillon est aléatoire, parce qu'on a un seul vendeur (les maisons les plus chères sont typiquement vendues par des courtiers indépendants.)"),
+  answer("On ne peut pas statuer sur le statut de l'échantillon.", correct = TRUE),
+  submit_button = "Soumettre une réponse")
+```
+
+
+```{r specification, echo=FALSE}
+question_checkbox("Soit $\\mu_{2018}$ et $\\mu_{2019}$ le prix moyen de vente des maisons en 2018 et 2019, respectivement. Quels énoncés suivants sont valides?",
+  answer("On considère un test unilatéral.", correct = TRUE),
+  answer("On considère un test bilatéral."),
+  answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} = \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} > \\mu_{2019}$", message = "Les hypothèses sont inversées: on se fait l'avocat du diable et l'hypothèse nulle est toujours ponctuelle."),
+   answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} < \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} \\leq \\mu_{2019}$", correct = TRUE),
+   answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} = \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} \\neq \\mu_{2019}$"),
+     answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} \\neq \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} = \\mu_{2019}$"),
+  allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```
+
+## Analyse exploratoire des données
+
+```{r formatlong, echo = FALSE}
+question_checkbox("Lesquels des énoncés suivants représente un tableau de données en format long si chaque ligne du tableau contient ",
+         answer("la date et le prix hebdomadaire de l'essence dans chacune des 17 régions du Québec (18 colonnes)", message = "Région est une variable catégorielle."),
+         answer("le temps de réaction à un obstacle et un indicateur binaire indiquant la mise en situation (texter ou converser au cellulaire)", correct = TRUE),
+         answer("le taux de satisfaction d'un individu de l'échantillon et des caractéristiques socio-démographiques", correct = TRUE),
+ allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```
+
+
+```{r choixadequategraphe, echo = FALSE}
+question("Supposons qu'on veut représenter graphiquement le salaire de professeurs en fonction de leur échelon académique. Quelle représentation graphique parmi les options suivantes est la plus adéquate?",
+         answer("un nuage de points du salaire (axe des y) en fonction de l'échelon, avec de la transparence.", message = "La variable échelon est ordinale"),
+         answer("une boîte à moustache du salaire (axe des y) avec l'échelon (axe des x), ordonné selon le rang (adjoint, aggrégé, titulaire)", correct = TRUE),
+         answer("trois histogrammes du salaire de couleurs différents.", message = "Si les histogrammes se chevauchent, il sera difficile de faire une distinction entre les trois groupes."),
+         answer("un diagramme à bande représentant le salaire moyen de professeurs en fonction de l'échelon", message = "Cette représentation ne fait pas un usage adéquat de l'information en ne conservant que la moyenne."),
+ allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```
+
+```{r boiteamoustache, echo = FALSE}
+question("Quels sont les éléments d'une boîte à moustache?",
+         answer("la boîte donne la moyenne plus ou moins deux erreurs-type et les moustaches s'étendent jusqu'au minimum et au maximum de l'échantillon."),
+         answer("la boîte donne la moyenne et les 25 et 75 percentiles de la distribution, avec une moustache d'une longueur de 2 fois l'erreur-type et les points au-delà les valeurs aberrantes.", correct = TRUE),
+         answer("la boîte donne les quartiles et les moustaches s'étendent jusqu'à 1.5 fois l'écart interquartile."),
+         answer("la boîte donne la moyenne et les 25 et 75 percentiles de la distribution; les moustaches s'étendent jusqu'à 1.5 fois l'écart interquartile. Les valeurs au-delà sont aberrantes."),
+ allow_retry = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```
+
+Considérez le graphique suivant qui représente les données `renfe`. 
+
+```{r renfebadplot, echo = FALSE, eval = TRUE, message = FALSE}
+library(poorman)
+library(ggplot2)
+library(hecmodstat)
+renfe %>% subset(type != "REXPRESS") %>%
+    ggplot(aes(y = duree, x = prix, col = type)) + 
+    geom_point() + 
+    labs(x = "prix", 
+         y = "durée de trajet (en minutes)",
+         col = "type de train") + 
+    theme(legend.position = "none") 
+
+```
+```{r ameliorationgraphe, echo = FALSE}
+question_checkbox("Quels éléments du graphiques amélioreraient le graphique?",
+         answer("les axes devraient être permutés pour que la variable réponse figure sur l'axe des y (ordonnées)", correct = TRUE),
+         answer("l'ajout d'une légende pour le code de couleur", correct = TRUE),
+         answer("l'ajout de l'unité de prix", correct = TRUE),
+         answer("l'ajout d'un titre nous renseignant sur le contexte et les données", correct = TRUE), 
+         answer("le retrait de la couleur qui indique les deux types de train à grande vitesse", message = "l'utilisation de la couleur évite un nouveau panneau graphique et permet de mieux comparer les deux types de train."),
+         answer("un autre type de géométrique graphique que le nuage de points, par exemple une boîte à moustache", correct = TRUE),
+         answer("la transformation de la durée de trajet en variable catégorielle"),
+         answer("l'utilisation de la transparence pour distinguer les duplicatas", correct = TRUE), 
+         answer("l'ajout de bruit vertical pour éviter la superposition", message = "Si cette option est souvent souhaitable, la faible différence ici entre les durées risque de rendre la représentation graphique trompeuse."),
+         answer("un changement de l'axe pour qu'il inclut zéro", message = "Fausse bonne idée:n i le prix, ni la durée ne peuvent être plausiblement nuls et cette option compresserait les observations et rendrait difficile les comparaisons."),
+ allow_retry = TRUE,
+  random_answer_order = TRUE,
+  submit_button = "Soumettre une réponse",
+  try_again_button = "Soumettre une nouvelle réponse")
+```

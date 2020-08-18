@@ -5,7 +5,7 @@ library(haven)
 library(fs)
 library(usethis)
 
-setwd("/home/lbelzile/Documents/Dropbox/Teaching/2020W/MATH60619A/Données/Anglais")
+setwd(paste0(dirname(dirname(dirname(dirname(rstudioapi::getActiveDocumentContext()$path)))),"/Données/SAS/Anglais/"))
 lfile <- list.files(pattern = ".sas7bdat")
 external_env <- new.env()
 for(file in lfile){
@@ -33,7 +33,7 @@ for(file in lfile){
   } else if(filen == "tickets"){
     data <- data %>%
       mutate(group = factor(group))
-  } else if(filen == "bixiuni"){
+  } else if(filen == "bixi"){
     data <- data %>%
     mutate(date = lubridate::ymd(as.character(date)))
   } else if(filen == "helmet"){
@@ -101,17 +101,17 @@ for(file in lfile){
   assign(x = filen, value = data, envir = external_env)
 }
 rm(data, filen)
-external_env$bixicoll <- external_env$bixi
-external_env$bixi <- external_env$bixiuni
-external_env$bixiuni <- NULL
-external_env$college <- external_env$profsalaries
-external_env$profsalaries <- NULL
+# external_env$bixicol <- external_env$bixi
+# external_env$bixi <- external_env$bixiuni
+# external_env$bixiuni <- NULL
+# external_env$college <- external_env$profsalaries
+# external_env$profsalaries <- NULL
 rm(covid, envir = external_env)
 
 
 ls(external_env)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-path <- usethis::proj_get()
+path <- dirname(getwd())
 dir_data <- path(path, "data")
 dir_create(dir_data)
 objs <- ls(envir = external_env)
