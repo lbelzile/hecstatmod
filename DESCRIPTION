@@ -1,7 +1,7 @@
 Package: hecstatmod
 Type: Package
 Title: Statistical Modelling at HEC Montréal
-Version: 2020.08.16
+Version: 2020.08.21
 Author: Léo Belzile
 Maintainer: Léo Belzile <leo.belzile@hec.ca>
 Description: Quiz and datasets for Statistical Modelling

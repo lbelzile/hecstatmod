@@ -18,133 +18,132 @@ knitr::opts_chunk$set(echo = TRUE, highlight = TRUE)
 
 
 ```{r valeurp, echo=FALSE}
-question_checkbox("On effectue un test-_t_ pour un échantillon (hypothèse unilatérale) et on obtient une valeur-_p_ de 0.06. Quel énoncé est correct?",
-  answer("L'erreur de type 1 est de 0.06.", message = "L'erreur de type 1 est égale au niveau si la loi nulle est correctement spécifiée."),
-  answer("À niveau 5%, on conclut que l'hypothèse nulle est vraie.", message = "On ne conclut jamais en faveur de l'hypothèse: la valeur-p est la probabilité conditionnelle sous l'hypothèse nulle d'obtenir un résultat. L'alternative peut être tout aussi probable, mais le manque de puissance nous empêche de rejeter la valeur observée."),
-  answer("À niveau 10%, on ne rejette pas l'hypothèse nulle.", correct = TRUE),
-  answer("Si l'hypothèse nulle était vraie, on s'attendrait à observer un résultat aussi extrême 6% du temps.", correct = TRUE),
+question_checkbox("Suppose that we perform a one-sample *t*-test for a one-sided hypothesis and that we obtain a *p*-value of 0.06. Which of the following statement(s) is correct?",
+  answer("The type I error is 0.06.", message = "The type I error is equal to the level $\alpha$ if the null distribution is correctly specified."),
+  answer("At level 5%, we conclude that the null hypothesis is true.", message = "We never conclude in favor of the hypothesis, because the *p*-value is the conditional probability given the null is true. The alternative could be equally likely, but lack of power prevents us from rejecting the null."),
+  answer("At level 10%, we fail to reject the null hypothesis", correct = TRUE),
+  answer("If the null hypothesis was true, we would expect a result as extreme 6% of the time", correct = TRUE),
   random_answer_order = TRUE,
   allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 
 ```
 
 
 ```{r puissance, echo=FALSE}
-question("Considérons un test d'hypothèse pour un paramètre $\\theta$. Quels facteurs mènent à une augmentation de la puissance d'un test de Wald?",
-  answer("Une augmentation de la taille de l'écart entre la valeur postulée du paramètre $\\theta_0$ et la vraie valeur.", correct = TRUE),
-  answer("Une diminution de la taille de l'échantillon.", message = "Si la taille de l'échantillon diminue, on a moins d'information pour détecter une différence."),
-  answer("La normalité asymptotique de la loi nulle.", message = "La taille de l'échantillon influe sur la loi nulle, mais cela n'a aucun impact pour une taille d'échantillons donnée."),
-  answer("Une augmentation de la variabilité de l'estimateur $\\hat{\\theta}$.", message = "Plus l'estimateur est variable, moins l'observation est précise et moins on rejette l'hypothèse nulle souvent."),
+question("Consider an hypothesis test for a parameter $\\theta$. Which factor lead to an increase of the power?",
+  answer("An increase of the difference between the postulated value  $\\theta_0$ and the true value of the parameter.", correct = TRUE),
+  answer("A decrease of the sample size.", message = "If the sample size decrease, we have less information and thus its harder to detect a difference."),
+  answer("The asymptotic normality of the null distribution.", message = "While the sample size impacts the null distribution, it is uncertain (and unlikely) that it would impact power."),
+  answer("An increase of the variability of $\\hat{\\theta}$.", message = "The more variable the estimator is, the less precise our measurement and so we reject the null less often."),
   random_answer_order = TRUE,
   allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
 
 ```{r ic, echo=FALSE}
-question("On obtient un estimé de la moyenne de 14; supposons que l'intervalle de confiance associé de niveau 95% est [12,16]. Laquelle des interprétations suivantes de l'intervalle de confiance est correcte?",
-  answer("On s’attend à ce que, 95 % du temps dans des échantillons aléatoires répétés, la vraie moyenne se situe entre 12 et 16.", message = "Les bornes de l'intervalle de confiance sont aléatoires."),
-  answer("La probabilité que la vraie moyenne se situe entre 12 et 16 est de 95%.", message = "L'intervalle contient (ou pas) la vraie moyenne; cette définition vaut pour un intervalle de crédibilité."),
-  answer("Dans des échantillons aléatoires répétés, 95 % des intervalles de confiance contiennent la valeur de la moyenne, soit 14.", message = "La vraie moyenne est inconnue!"),
-  answer("Aucune de ces réponses", correct = TRUE),
+question("We obtain an estimate of 14 for the mean; suppose that the 95% confidence interval is [12,16]. Which of the following interpretation of the confidence interval is correct?",
+  answer("We expect that, 95% of the time in repeated samples, the true mean will fall between 12 and 16.", message = "The bounds of the confidence interval are random!"),
+  answer("The probability that the true mean is between 12 and 16 is 95%.", message = "The interval either contains the true mean, or it doesn't. The definition is that of a credible interval (Bayesian paradigm)."),
+  answer("In repeated samples, 95% of these intervals would contain the mean, i.e., 14.", message = "The true mean is unknown and 14 is the estimate."),
+  answer("None of the above", correct = TRUE),
   allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
 
 
-
-On veut savoir si le prix de résidences secondaires a augmenté au cours de la dernière année. Pour ce faire, on considère toutes les propriétés vendues sur Centris en 2018 et 2019.
+We want to know whether the price of holiday homes increased over the past year and compare the price of all properties sold on Centris between 2018 and 2019.
 
 
 ```{r donnees, echo=FALSE}
-question_checkbox("Quels énoncés suivants sont valides?",
-  answer("On a accès à un recensement et toute la population est observée: il suffit de comparer les moyennes empiriques des prix.", message = "La population d'intérêt inclut des maisons qui ne sont pas sur le site de Centris. "),
-  answer("On considère un échantillon aléatoire.", message = "Il n'est pas clair que l'échantillon est aléatoire, parce qu'on a un seul vendeur (les maisons les plus chères sont typiquement vendues par des courtiers indépendants.)"),
-  answer("On ne peut pas statuer sur le statut de l'échantillon.", correct = TRUE),
-  submit_button = "Soumettre une réponse")
+question_checkbox("What of the following statement is valid?",
+  answer("We have a census, because we have all of the listings on Centris.", message = "The population of interest is all holiday homes, and these may not all be listed on Centris. "),
+  answer("We are considering a random sample.", message = "No. The sample is not random because it includes a single seller (for example, more expensive houses may be sold by independent brokers)."),
+  answer("We cannot say anything about the quality of the sample.", correct = TRUE),
+  submit_button = "Submit an answer")
 ```
 
 
 ```{r specification, echo=FALSE}
-question_checkbox("Soit $\\mu_{2018}$ et $\\mu_{2019}$ le prix moyen de vente des maisons en 2018 et 2019, respectivement. Quels énoncés suivants sont valides?",
-  answer("On considère un test unilatéral.", correct = TRUE),
-  answer("On considère un test bilatéral."),
-  answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} = \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} > \\mu_{2019}$", message = "Les hypothèses sont inversées: on se fait l'avocat du diable et l'hypothèse nulle est toujours ponctuelle."),
-   answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} < \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} \\leq \\mu_{2019}$", correct = TRUE),
-   answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} = \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} \\neq \\mu_{2019}$"),
-     answer("L'hypothèse alternative est $\\mathscr{H}_a: \\mu_{2018} \\neq \\mu_{2019}$ et l'hypothèse nulle $\\mathscr{H}_0: \\mu_{2018} = \\mu_{2019}$"),
+question_checkbox("Let $\\mu_{2018}$ and $\\mu_{2019}$ denote the expected sale prize of holiday homes in 2018 and 2019, respectively. Which of the following statements are valid?",
+  answer("The hypothesis of interest calls for a one-sided test.", correct = TRUE),
+  answer("The hypothesis of interest calls for a two-sided test."),
+  answer("The alternative hypothesis is $\\mathscr{H}_a: \\mu_{2018} = \\mu_{2019}$ and the null hypothesis is $\\mathscr{H}_0: \\mu_{2018} > \\mu_{2019}$", message = "The opposite: the null hypothesis is a pointwise hypothesis (Devil's advocate)."),
+   answer("The alternative hypothesis is $\\mathscr{H}_a: \\mu_{2018} < \\mu_{2019}$ and the null hypothesis is $\\mathscr{H}_0: \\mu_{2018} \\leq \\mu_{2019}$", correct = TRUE),
+   answer("The alternative hypothesis is $\\mathscr{H}_a: \\mu_{2018} = \\mu_{2019}$ and the null hypothesis is $\\mathscr{H}_0: \\mu_{2018} \\neq \\mu_{2019}$"),
+     answer("The alternative hypothesis is $\\mathscr{H}_a: \\mu_{2018} \\neq \\mu_{2019}$ and the null hypothesis is $\\mathscr{H}_0: \\mu_{2018} = \\mu_{2019}$"),
   allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
 
-## Analyse exploratoire des données
+## Exploratory data analysis
 
 ```{r formatlong, echo = FALSE}
-question_checkbox("Lesquels des énoncés suivants représente un tableau de données en format long si chaque ligne du tableau contient ",
-         answer("la date et le prix hebdomadaire de l'essence dans chacune des 17 régions du Québec (18 colonnes)", message = "Région est une variable catégorielle."),
-         answer("le temps de réaction à un obstacle et un indicateur binaire indiquant la mise en situation (texter ou converser au cellulaire)", correct = TRUE),
-         answer("le taux de satisfaction d'un individu de l'échantillon et des caractéristiques socio-démographiques", correct = TRUE),
+question_checkbox("Which of the following statements accurately describes a data frame in long format if each line of the table contains:",
+         answer("the data and the weekly average price of gasoline in each of the 17 regions of Quebec (18 columns)", message = "Region is a categorical variable, so it should be one response measurement by line!"),
+         answer("reaction time to an obstacle and a binary indicator for the source of distraction (texting or phone call).", correct = TRUE),
+         answer("the satisfaction rate of an individual, along with socio-demographic characteristics of that person.", correct = TRUE),
  allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
 
 
 ```{r choixadequategraphe, echo = FALSE}
-question("Supposons qu'on veut représenter graphiquement le salaire de professeurs en fonction de leur échelon académique. Quelle représentation graphique parmi les options suivantes est la plus adéquate?",
-         answer("un nuage de points du salaire (axe des y) en fonction de l'échelon, avec de la transparence.", message = "La variable échelon est ordinale"),
-         answer("une boîte à moustache du salaire (axe des y) avec l'échelon (axe des x), ordonné selon le rang (adjoint, aggrégé, titulaire)", correct = TRUE),
-         answer("trois histogrammes du salaire de couleurs différents.", message = "Si les histogrammes se chevauchent, il sera difficile de faire une distinction entre les trois groupes."),
-         answer("un diagramme à bande représentant le salaire moyen de professeurs en fonction de l'échelon", message = "Cette représentation ne fait pas un usage adéquat de l'information en ne conservant que la moyenne."),
+question("Suppose that we want to represent graphically the salary of professors a function of their rank. Which graphical representation would be the most adequate amongst the following options?",
+         answer("a scatterplot of salary (*y*-axis) as a function of ranking, including transparency for points to avoid overlaid.", message = "The scale variable is ordinal, but it should be categorical!"),
+         answer("a boxplot of salary (*y*-axis) as a function of rank (*x*-axis), ordered in increasing rank (assistant, associate, full))", correct = TRUE),
+         answer("three histograms of salary (one per rank), with different colors.", message = "If the histograms are overlaid, it would be difficult to distinguish between the groups. Better would be to add them to different panels."),
+         answer("a bar plot for average salary per rank", message = "This visual representation doesn't make adequate use of information, because it only considers the mean."),
  allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
 
 ```{r boiteamoustache, echo = FALSE}
-question("Quels sont les éléments d'une boîte à moustache?",
-         answer("la boîte donne la moyenne plus ou moins deux erreurs-type et les moustaches s'étendent jusqu'au minimum et au maximum de l'échantillon."),
-         answer("la boîte donne la moyenne et les 25 et 75 percentiles de la distribution, avec une moustache d'une longueur de 2 fois l'erreur-type et les points au-delà les valeurs aberrantes.", correct = TRUE),
-         answer("la boîte donne les quartiles et les moustaches s'étendent jusqu'à 1.5 fois l'écart interquartile."),
-         answer("la boîte donne la moyenne et les 25 et 75 percentiles de la distribution; les moustaches s'étendent jusqu'à 1.5 fois l'écart interquartile. Les valeurs au-delà sont aberrantes."),
+question("What are the elements of a box-and-whiskers plot?",
+         answer("the box gives the average plus or minus two standard errors; the whiskers extend until the minimum and maximum of the sample."),
+         answer("the box gives the mean, the 25th and 75th percentiles of the distribution. The whiskers' length extend up to twice the standard error on each side of the box and any point beyond the whiskers is flagged as outlying."),
+         answer("the box contains the first, second and third quartiles; the whiskers extend from the box until 1.5 times the interquartile range.", correct = TRUE),
+         answer("the box contains the mean and the 25th and 75th percentiles of the distribution; the whiskers extend from the box until 1.5 times the interquartile range and values beyond these are flagged as outlying."),
  allow_retry = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
 
-Considérez le graphique suivant qui représente les données `renfe`. 
+Consider the following graph of the `renfe` data. 
 
 ```{r renfebadplot, echo = FALSE, eval = TRUE, message = FALSE}
 library(poorman)
 library(ggplot2)
-library(hecmodstat)
+library(hecstatmod)
 renfe %>% subset(type != "REXPRESS") %>%
-    ggplot(aes(y = duree, x = prix, col = type)) + 
+    ggplot(aes(y = duration, x = price, col = type)) + 
     geom_point() + 
-    labs(x = "prix", 
-         y = "durée de trajet (en minutes)",
-         col = "type de train") + 
+    labs(x = "price", 
+         y = "duration of travel (in minutes)",
+         col = "type of train") + 
     theme(legend.position = "none") 
 
 ```
 ```{r ameliorationgraphe, echo = FALSE}
-question_checkbox("Quels éléments du graphiques amélioreraient le graphique?",
-         answer("les axes devraient être permutés pour que la variable réponse figure sur l'axe des y (ordonnées)", correct = TRUE),
-         answer("l'ajout d'une légende pour le code de couleur", correct = TRUE),
-         answer("l'ajout de l'unité de prix", correct = TRUE),
-         answer("l'ajout d'un titre nous renseignant sur le contexte et les données", correct = TRUE), 
-         answer("le retrait de la couleur qui indique les deux types de train à grande vitesse", message = "l'utilisation de la couleur évite un nouveau panneau graphique et permet de mieux comparer les deux types de train."),
-         answer("un autre type de géométrique graphique que le nuage de points, par exemple une boîte à moustache", correct = TRUE),
-         answer("la transformation de la durée de trajet en variable catégorielle"),
-         answer("l'utilisation de la transparence pour distinguer les duplicatas", correct = TRUE), 
-         answer("l'ajout de bruit vertical pour éviter la superposition", message = "Si cette option est souvent souhaitable, la faible différence ici entre les durées risque de rendre la représentation graphique trompeuse."),
-         answer("un changement de l'axe pour qu'il inclut zéro", message = "Fausse bonne idée:n i le prix, ni la durée ne peuvent être plausiblement nuls et cette option compresserait les observations et rendrait difficile les comparaisons."),
+question_checkbox("Which of the following elements would improve the graphic?",
+         answer("axies should be permuted so that the response variable is on the *y*-axis", correct = TRUE),
+         answer("a legend for the color code", correct = TRUE),
+         answer("the monetary unit for the price label", correct = TRUE),
+         answer("a plot title providing context for the data", correct = TRUE), 
+         answer("removing the color that indicates the type of high speed train", message = "use of color avoids having two side-by-side panels and allows for a better comparison."),
+         answer("a different type of geometry to replace the scatterplot, for example a boxplot", correct = TRUE),
+         answer("mapping travel duration into an unordered categorical variable"),
+         answer("inclusion of transparency to better see ties", correct = TRUE), 
+         answer("jitting observations (vertically), i.e. adding noise to avoid overlaid points", message = "If this option is often desirable, the small difference between duration of travel is likely to make this misleading."),
+         answer("including zero on the axis", message = "Bad idea: neither price nor duration is close to zero and this would lead to clutter of observations, making comparisons more difficult."),
  allow_retry = TRUE,
   random_answer_order = TRUE,
-  submit_button = "Soumettre une réponse",
-  try_again_button = "Soumettre une nouvelle réponse")
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
 ```
