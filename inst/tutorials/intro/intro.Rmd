@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE, highlight = TRUE)
 
 ```{r valeurp, echo=FALSE}
 question_checkbox("Suppose that we perform a one-sample *t*-test for a one-sided hypothesis and that we obtain a *p*-value of 0.06. Which of the following statement(s) is correct?",
-  answer("The type I error is 0.06.", message = "The type I error is equal to the level $\alpha$ if the null distribution is correctly specified."),
+  answer("The type I error is 0.06.", message = "The type I error is equal to the level $\\alpha$ if the null distribution is correctly specified."),
   answer("At level 5%, we conclude that the null hypothesis is true.", message = "We never conclude in favor of the hypothesis, because the *p*-value is the conditional probability given the null is true. The alternative could be equally likely, but lack of power prevents us from rejecting the null."),
   answer("At level 10%, we fail to reject the null hypothesis", correct = TRUE),
   answer("If the null hypothesis was true, we would expect a result as extreme 6% of the time", correct = TRUE),
@@ -132,7 +132,7 @@ renfe %>% subset(type != "REXPRESS") %>%
 ```
 ```{r ameliorationgraphe, echo = FALSE}
 question_checkbox("Which of the following elements would improve the graphic?",
-         answer("axies should be permuted so that the response variable is on the *y*-axis", correct = TRUE),
+         answer("axes should be permuted so that the response variable is on the *y*-axis", correct = TRUE),
          answer("a legend for the color code", correct = TRUE),
          answer("the monetary unit for the price label", correct = TRUE),
          answer("a plot title providing context for the data", correct = TRUE), 

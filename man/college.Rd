@@ -28,6 +28,6 @@ The data were collected as part of the on-going effort of the college's administ
 to monitor salary differences between male and female faculty members.
 }
 \seealso{
-\link[car]{Salaries}
+\link[carData]{Salaries}
 }
 \keyword{datasets}

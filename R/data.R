@@ -151,7 +151,7 @@ NULL
 #' }
 #'
 #' @source Fox J. and Weisberg, S. (2019) \emph{An R Companion to Applied Regression}, Third Edition, Sage.
-#' @seealso \link[car]{Salaries}
+#' @seealso \link[carData]{Salaries}
 "college"
 
 
