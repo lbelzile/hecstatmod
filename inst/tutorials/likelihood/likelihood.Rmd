@@ -1,0 +1,58 @@
+---
+title: "Quiz  - Chapter 3 (Likelihood-based inference)"
+output:
+  learnr::tutorial:
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  Questions on maximum likelihoods, likelihood-based tests and information criteria 
+  
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE, highlight = TRUE)
+```
+
+## Likelihood models
+
+
+```{r trueorfalselik, echo=FALSE}
+question_radio("Which of the following statement is true?",
+  answer("The log-likelihood is necessarily negative.", message = "For continuous models, the likelihood is the product of densities, and these are not bounded above by 1."),
+  answer("The larger the log-likelihood value, the better the fit.", correct=TRUE),
+  answer("The maximum likelihood estimators for the parameters of independent and identically distributed data from $\\mathsf{No}(\\mu, \\sigma^2)$ are the sample mean and the sample variance", correct = FALSE, message = "The estimator of the variance has a denominator of $n$, not $n-1$."),
+  answer("Ordinary least squares and maximum likelihood estimators always give the same values, regardless of the model", correct = FALSE, message = "This is true only for $\\boldsymbol{\\beta}$ in normal linear model with common variance $\\sigma^2$."),
+  random_answer_order = TRUE,
+  allow_retry = TRUE,
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
+```
+
+
+```{r liktests, echo=FALSE}
+question_radio("Which of the following statement is true?",
+  answer("The likelihood ratio test requires fitting both the null and alternative models.",  correct = TRUE),
+  answer("The score test is calculated using the gradient and the hessian evaluated at the maximum likelihood estimator of the full model.", correct = FALSE, message = "By definition, the maximum likelihood estimator solves the score equation, so the gradient is zero."),
+  answer("If $[0.1,0.6]$ is a Wald-based 95% confidence interval for $\\theta$, then the 95% confidence interval for $\\exp(\\theta)$ is $[\\exp(0.1), \\exp(0.6)]$", correct = FALSE, message = "Wald-based confidence intervals are not invariant to nonlinear reparametrizations of the model. The maximum likelihood estimate of $\\exp(\\theta)$ is $\\exp(\\widehat{\\theta})$, but the standard errors have to be adjusted using the delta method."),
+  answer("Wald and likelihood ratio test for a parameter coincide.", correct = FALSE),
+  random_answer_order = TRUE,
+  allow_retry = TRUE,
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
+
+```
+
+
+```{r aic, echo=FALSE}
+question_radio("Which of the following statement is true?",
+  answer("AIC always lead to simpler models than BIC for $n > 10$.",  correct = FALSE, message = "AIC has a penalty of two times the number of parameters, whereas the penalty for BIC is $\\ln(n)$ which is greater than 2.30 for $n>10$."),
+  answer("If we compare two nested models, we should pick the one with the highest likelihood value", correct = FALSE, message = "The smaller (null model) on which we impose restrictions will always fit worst than the model without restriction, because the null model is always a special case of the full model."),
+  answer("The lower the information criterion, the better the model.", correct = TRUE, message = "Minus twice the log-likelihood plus penalty, so the larger the log-likelihood the smaller $-2 \\ell(\\boldsymbol{\\theta})$."),
+  answer("Information criteria and testing procedures give the same output", correct = FALSE, message = "We cannot compare models that are not nested; moreover, information criteria are not formal testing procedures."),
+  random_answer_order = TRUE,
+  allow_retry = TRUE,
+  submit_button = "Submit an answer",
+  try_again_button = "Try again")
+
+```
