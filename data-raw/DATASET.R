@@ -36,6 +36,18 @@ for(file in lfile){
   } else if(filen == "bixi"){
     data <- data %>%
     mutate(date = lubridate::ymd(as.character(date)))
+   } else if(filen == "sweden"){
+      data <- data %>%
+        mutate(year = factor(year),
+               day = factor(day))
+  } else if(filen == "birthwgt"){
+    data <- data %>%
+      mutate(race = factor(race),
+             smoker = factor(smoker),
+             premature = factor(premature),
+             hypertension = factor(hypertension),
+             irrit = factor(irrit)
+             )
   } else if(filen == "helmet"){
     data <- data %>%
       mutate(design = factor(design),
