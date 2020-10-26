@@ -107,6 +107,21 @@ for(file in lfile){
     rename(time=t) %>%
     mutate(id = factor(id),
            time = factor(time))
+ } else if(filen == "chimp"){
+   data <- data %>%
+     mutate(chimp = factor(chimp),
+            word = factor(word))
+ } else if(filen == "soccer"){
+   data <- data %>%
+     mutate(opponent = factor(opponent),
+            team = factor(team))
+ } else if(filen == "socceragg"){
+   data <- data %>%
+     mutate(home = factor(home),
+            away = factor(away))
+ } else if(filen == "buchanan"){
+   data <- data %>%
+     mutate(county = factor(county))
  }
   attributes(data)$label <- NULL
   attributes(data)$rownames <- NULL
