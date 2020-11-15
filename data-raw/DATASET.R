@@ -122,7 +122,44 @@ for(file in lfile){
  } else if(filen == "buchanan"){
    data <- data %>%
      mutate(county = factor(county))
+ } else if(filen == "fev1"){
+   data <- data %>% rename(id=ID,
+                           height=HT,
+                           age=AGE,
+                           baseheight=BASEHT,
+                           baseage=BASEAGE,
+                           logfev1=LOGFEV1) %>%
+     mutate(id = factor(id))
+  } else if(filen == "chicken"){
+ data <- data %>%
+   mutate(chick = factor(chick),
+          diet = factor(diet))
+  } else if(filen == "beattheblues"){
+   data$id <- factor(1:nrow(data))
+  # tidyr::pivot_longer(data, cols = c("bdi0","bdi2","bdi4","bdi6","bdi8"), names_to = "bdi",names_prefix = "bdi")
+ } else if(filen == "dental"){
+   data <- data %>% rename(id=ID,
+                           gender=GENDER,
+                           dist8=Y1,
+                           dist10=Y2,
+                           dist12=Y3,
+                           dist14=Y4) %>%
+     mutate(id = factor(id))
+   levels(data$gender) <- c("female","male")
+  } else if(filen == "pigweight"){
+    data <- data %>% mutate(id = factor(id))
+  } else if(filen == "rat"){
+    data <- data %>% rename(id=ID,
+                            group=GROUP,
+                            wgt1=Y1,
+                            wgt2=Y2,
+                            wgt3=Y3,
+                            wgt4=Y4,
+                            wgt5=Y5) %>%
+      mutate(id = factor(id),
+             group = factor(group))
  }
+
   attributes(data)$label <- NULL
   attributes(data)$rownames <- NULL
   assign(x = filen, value = data, envir = external_env)
@@ -133,7 +170,6 @@ rm(data, filen)
 # external_env$bixiuni <- NULL
 # external_env$college <- external_env$profsalaries
 # external_env$profsalaries <- NULL
-rm(covid, envir = external_env)
 
 
 ls(external_env)
