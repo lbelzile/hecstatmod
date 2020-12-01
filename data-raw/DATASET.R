@@ -158,8 +158,9 @@ for(file in lfile){
                             wgt5=Y5) %>%
       mutate(id = factor(id),
              group = factor(group))
+ } else if(filen == "breastfeeding"){
+   data <- data %>% mutate(race = factor(race))
  }
-
   attributes(data)$label <- NULL
   attributes(data)$rownames <- NULL
   assign(x = filen, value = data, envir = external_env)
