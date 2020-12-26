@@ -160,6 +160,9 @@ for(file in lfile){
              group = factor(group))
  } else if(filen == "breastfeeding"){
    data <- data %>% mutate(race = factor(race))
+ } else if(filen == "shoes"){
+   data <-  data %>% mutate(status = factor(status),
+                            gender = factor(gender))
  }
   attributes(data)$label <- NULL
   attributes(data)$rownames <- NULL
