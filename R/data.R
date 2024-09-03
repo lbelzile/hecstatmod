@@ -319,3 +319,18 @@ NULL
 #' \item{\code{totmb}}{the total number of votes cast for the presidential election in each county, minus Buchanan votes}
 #' }
 "buchanan"
+
+
+
+#' Waiting time for the Montreal metro
+#'
+#' Time (in seconds) from 17:59 until the departure of the next metro at Edouard-Montpetit station
+#' during week-days over three consecutive months
+#'
+#' @docType data
+#' @format a numeric vector with 62 observations
+#' \describe{
+#' \item{\code{waiting}}{time (in seconds) before the next metro departure}
+#' }
+#' @source STM
+"waiting"
