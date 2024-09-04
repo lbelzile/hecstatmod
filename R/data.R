@@ -324,7 +324,7 @@ NULL
 
 #' Waiting time for the Montreal metro
 #'
-#' Time (in seconds) from 17:59 until the departure of the next metro at Edouard-Montpetit station
+#' Time (in seconds) from 17:59 until the departure of the next metro at the Universite de Montreal station
 #' during week-days over three consecutive months
 #'
 #' @docType data
